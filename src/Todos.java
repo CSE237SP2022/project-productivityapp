@@ -59,6 +59,7 @@ public class Todos {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		System.out.println("helloworld");
 		while(!exitProgram) {
 			System.out.println("Todo list commands: ");
 			System.out.println("type 'create' to create a new todo");
