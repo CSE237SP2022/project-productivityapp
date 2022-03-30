@@ -15,10 +15,18 @@ Added functionality to add/remove todo's from the overall list <br />
 Added function to sort todos alphabetically <br />
 
 Steps for iteration 2: <br />
+Allow editing todo <br />
+Finishing sorting alphabetically functionality <br />
 Allow sorting of list by due date <br />
 Allow soritng of list by urgency <br />
 
 How to Run Program: <br />
 javac Todos.java <br />
 java Todos <br />
+
+Commands for using program: <br />
+type "create" to create a new todo <br />
+type "print to show all created todos <br />
+type "exit" to exit program
+
 
