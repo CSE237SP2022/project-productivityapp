@@ -5,23 +5,27 @@ import java.util.*;
 import java.time.Instant;
 
 public class Todos {
-	static public HashMap<String,ArrayList<String>> todosMap = new HashMap<>();
+	
+	static public HashMap<String,Todo> todosMap = new HashMap<>();
 	static boolean exitProgram = false;
 	static Scanner scannerObj = new Scanner(System.in);
-	
 	
 	static void printTodos() {
 		System.out.println("Here are your current todos: ");
 		for(String key:todosMap.keySet()) {
-			ArrayList<String> values = new ArrayList<>();
-			values = todosMap.get(key);
-			for(String value: values) {
-				System.out.print(value);
-				System.out.print("        ");
-			}
+			String todoDescription = todosMap.get(key).description;
+			String todoDueDate = todosMap.get(key).dueDate;
+			String todoProgress = todosMap.get(key).progress;
+			System.out.print(todoDescription);
+			System.out.print("        ");
+			System.out.print(todoDueDate);
+			System.out.print("        ");
+			System.out.print(todoProgress);
+			System.out.print("        ");
 			System.out.println("");
 		}
 	}
+	
 	static void createTodos() {
 		System.out.println("Enter info for a new todo (type 'exit' to leave): ");
 	    String todo = scannerObj.nextLine();  
@@ -32,34 +36,14 @@ public class Todos {
 		    Instant instant = Instant.now();
 		    System.out.println("Enter current progress on todo 0-100 (don't include % sign)");
 		    String progress = scannerObj.nextLine()+"%";
-		    ArrayList<String> todoList = new ArrayList<>();
-		    todoList.add(todo);
-		    todoList.add(dueDate);
-		    todoList.add(progress);
-		    todosMap.put(instant+"", todoList);
+		    Todo newTodo = new Todo(todo,dueDate,progress);
+		    todosMap.put(instant+"", newTodo);
 		    System.out.println("New todo has been added to list!");
 	    }
 	    
 	}
 	
-	static void alphabeticalSortMethod() {
-
-		TreeMap<String, ArrayList<String>> sorted = new TreeMap<>();
-		sorted.putAll(todosMap);
-		for (Map.Entry<String, ArrayList<String>> entry : sorted.entrySet()) {
-			System.out.println(entry.getValue());
-		}
-		
-	}
-	
-	static void reverseAlphabeticalSortMethod () {
-		//Arrays.sort(null,Collections.reverseOrder());
-	}
-
-
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println("helloworld");
 		while(!exitProgram) {
 			System.out.println("Todo list commands: ");
 			System.out.println("type 'create' to create a new todo");
@@ -85,6 +69,7 @@ public class Todos {
 			System.out.println("");
 			System.out.println("");
 		}
-
 	}
+	
+	
 }
