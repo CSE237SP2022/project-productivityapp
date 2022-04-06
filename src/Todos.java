@@ -6,16 +6,20 @@ import java.time.Instant;
 
 public class Todos {
 	
-	static public HashMap<String,Todo> todosMap = new HashMap<>();
+	static public HashMap<Integer,Todo> todosMap = new HashMap<>();
 	static boolean exitProgram = false;
 	static Scanner scannerObj = new Scanner(System.in);
+	static int counter = 0;
 	
 	static void printTodos() {
 		System.out.println("Here are your current todos: ");
-		for(String key:todosMap.keySet()) {
+		for(int key:todosMap.keySet()) {
+			int todoId = todosMap.get(key).id;
 			String todoDescription = todosMap.get(key).description;
 			String todoDueDate = todosMap.get(key).dueDate;
 			String todoProgress = todosMap.get(key).progress;
+			System.out.print(todoId);
+			System.out.print("        ");
 			System.out.print(todoDescription);
 			System.out.print("        ");
 			System.out.print(todoDueDate);
@@ -36,9 +40,46 @@ public class Todos {
 		    Instant instant = Instant.now();
 		    System.out.println("Enter current progress on todo 0-100 (don't include % sign)");
 		    String progress = scannerObj.nextLine()+"%";
-		    Todo newTodo = new Todo(todo,dueDate,progress);
-		    todosMap.put(instant+"", newTodo);
+		    Todo newTodo = new Todo(counter,todo,dueDate,progress,instant+"");
+		    todosMap.put(counter, newTodo);
+		    counter++;
 		    System.out.println("New todo has been added to list!");
+	    }
+	    
+	}
+	public static boolean isNum(String str)  
+	{  
+	  try  
+	  {  
+	    int i = Integer.parseInt(str);  
+	  }  
+	  catch(NumberFormatException e)  
+	  {  
+	    return false;  
+	  }  
+	  return true;  
+	}
+	static void deleteTodos() {
+		System.out.println("Enter name or id of todo you would like to delete (type 'exit' to leave): ");
+	    String todo = scannerObj.nextLine();
+	    if(!todo.equals("exit")) {
+		    if(isNum(todo)) {
+		    	todosMap.remove(Integer.parseInt(todo));
+		    }
+		    else {
+		    	int todoId = -1;
+		    	for(int key:todosMap.keySet()) {
+		    		if(todosMap.get(key).description.equals(todo)) {
+		    			todoId = key;
+		    		}
+		    	}
+		    	if(todoId != -1) {
+		    		todosMap.remove(todoId);
+		    	}
+		    	else {
+		    		System.out.println("Input not valid. Todo does not exist. ");
+		    	}
+		    }
 	    }
 	    
 	}
@@ -53,6 +94,9 @@ public class Todos {
 			String todoCommand = scannerObj.nextLine();
 			if(todoCommand.equals("create")) {
 				createTodos();
+			}
+			else if(todoCommand.equals("delete")) {
+				deleteTodos();
 			}
 			else if(todoCommand.equals("edit")) {
 				System.out.println("edit todos function here");
