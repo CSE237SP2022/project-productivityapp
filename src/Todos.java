@@ -7,9 +7,11 @@ import java.time.Instant;
 public class Todos {
 	
 	static public HashMap<Integer,Todo> todosMap = new HashMap<>();
+	static public HashMap<Integer, SubTodo> subTodosMap = new HashMap<>();
 	static boolean exitProgram = false;
 	static Scanner scannerObj = new Scanner(System.in);
-	static int counter = 0;
+	static int todoCounter = 0;
+	static int subTodoCounter = 0;
 	
 	static void printTodos() {
 		System.out.println("Here are your current todos: ");
@@ -40,13 +42,32 @@ public class Todos {
 		    Instant instant = Instant.now();
 		    System.out.println("Enter current progress on todo 0-100 (don't include % sign)");
 		    String progress = scannerObj.nextLine()+"%";
-		    Todo newTodo = new Todo(counter,todo,dueDate,progress,instant+"");
-		    todosMap.put(counter, newTodo);
-		    counter++;
+		    System.out.println("Would you like to add sub-todos? (yes/no)");
+		    String addSubTodos = scannerObj.nextLine();
+		    Todo newTodo = new Todo(todoCounter,todo,dueDate,progress,instant+"");
+		    if(addSubTodos.equals("yes")) {
+		    	String continueAddingSubTodos = "yes"; 
+		    	while(continueAddingSubTodos.equals("yes")) {
+		    		System.out.println("Enter info for a new sub-todo: ");
+		    	    String subTodoInfo = scannerObj.nextLine();  
+			    	System.out.println("Enter deadline for subtodo (MM/DD/YYYY)");
+			    	String subDueDate = scannerObj.nextLine();
+				    Instant subInstant = Instant.now();
+				    System.out.println("Enter current progress on todo 0-100 (don't include % sign)");
+				    String subProgress = scannerObj.nextLine()+"%";
+				    SubTodo newSubTodo = new SubTodo(subTodoCounter, todoCounter,subTodoInfo, subDueDate,subProgress, subInstant+"");
+				    newTodo.addSubTodo(newSubTodo);
+				    System.out.println("Would you like to keep adding sub-todos? (yes/no)");
+				    continueAddingSubTodos = scannerObj.nextLine();
+		    	}
+
+		    }
+		    todosMap.put(todoCounter, newTodo);
+		    todoCounter++;
 		    System.out.println("New todo has been added to list!");
 	    }
-	    
 	}
+	
 	public static boolean isNum(String str)  
 	{  
 	  try  
@@ -59,6 +80,7 @@ public class Todos {
 	  }  
 	  return true;  
 	}
+	
 	static void deleteTodos() {
 		System.out.println("Enter name or id of todo you would like to delete (type 'exit' to leave): ");
 	    String todo = scannerObj.nextLine();
