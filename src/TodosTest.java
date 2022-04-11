@@ -20,34 +20,31 @@ class TodosTest {
 	Todo todo3 = new Todo(3, "water plants", dueDate, progress,creationDate);
 	
 	
-	@Test
-	void testPrintTodos() {
-		
-		
-		Todos.todosMap.put(todo1.id, todo1);
-		Todos.todosMap.put(todo2.id, todo2);
-		Todos.todosMap.put(todo3.id, todo3);
-		
-		String line1="1        clean up room        01/01/2000        25";
-		String line2= "2        put away clothes        01/01/2000        25";
-		String line3="3        water plants        01/01/2000        25";
-	    //System.out.print("Hello Baeldung Readers!!");
-		Todos.printTodos();
-	    
-
-		//fail("Not yet implemented");
-	}
+//	@Test
+//	void testPrintTodos() {
+//		
+//		
+//		Todos.todosMap.put(todo1.id, todo1);
+//		Todos.todosMap.put(todo2.id, todo2);
+//		Todos.todosMap.put(todo3.id, todo3);
+//		
+//		String line1="1        clean up room        01/01/2000        25";
+//		String line2= "2        put away clothes        01/01/2000        25";
+//		String line3="3        water plants        01/01/2000        25";
+//	    //System.out.print("Hello Baeldung Readers!!");
+//		Todos.printTodos();
+//	    
+//
+//		//fail("Not yet implemented");
+//	}
 
 	@Test
 	void testCreateTodos() {
-		
-		
 		int prevTodoCounter = Todos.todoCounter;
 		
-		//run create Todo function
 		Todos.createTodos();
-
-		assertEquals(prevTodoCounter+1,Todos.subTodoCounter);
+		
+		assertEquals(prevTodoCounter+1,Todos.todoCounter);
 		
 		//fail("Not yet implemented");
 	}
