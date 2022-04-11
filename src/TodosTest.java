@@ -47,7 +47,7 @@ class TodosTest {
 		
 		assertEquals(prevTodoCounter+1,Todos.todoCounter);
 		
-		//fail("Not yet implemented");
+		
 	}
 
 	@Test
