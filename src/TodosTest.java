@@ -72,7 +72,9 @@ class TodosTest {
 
 	@Test
 	void testSelectTodo() {
-		fail("Not yet implemented");
+		Todos.createTodos(todo2);
+		assertEquals(todo2,Todos.selectTodo(todo2.id));
+		
 	}
 
 	@Test

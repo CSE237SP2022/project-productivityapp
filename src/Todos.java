@@ -115,10 +115,16 @@ public class Todos {
 	  return true;  
 	}
 	
-	static void selectTodo() {
+	static Todo selectTodo(int id) {
+		return todosMap.get(id);
+		
+	}
+	
+	static void selectTodoPrompt() {
 		System.out.println("Enter name or id of todo you would like to select (type 'exit' to leave): ");
 	    String todo = scannerObj.nextLine();
 	    if(!todo.equals("exit")) {
+	    	
 	    	int todoId = -1;
 		    if(isNum(todo)) {
 		    	todoId = Integer.parseInt(todo);
@@ -134,9 +140,12 @@ public class Todos {
 	    		System.out.println("Input not valid. Todo does not exist. ");
 	    	}
 	    	else {
-    			String todoDescription = todosMap.get(todoId).description;
-    			String todoDueDate = todosMap.get(todoId).dueDate;
-    			String todoProgress = todosMap.get(todoId).progress;
+	    		
+	    		Todo selectedTodo =selectTodo(todoId);
+	    		
+	    		String todoDescription = selectedTodo.description;
+    			String todoDueDate = selectedTodo.dueDate;
+    			String todoProgress = selectedTodo.progress;
     			System.out.print(todoId);
     			System.out.print("        ");
     			System.out.print(todoDescription);
@@ -161,7 +170,10 @@ public class Todos {
     			}
 	    	}
 	    }
+	    
+		
 	}
+	
 	static void deleteTodos() {
 		System.out.println("Enter name or id of todo you would like to delete (type 'exit' to leave): ");
 	    String todo = scannerObj.nextLine();
@@ -258,7 +270,7 @@ public class Todos {
 				System.out.println("edit todos function here");
 			}
 			else if(todoCommand.equals("select")) {
-				selectTodo();
+				selectTodoPrompt();
 			}
 			else if(todoCommand.equals("add subtodo")) {
 				addSubTodoPrompt();
