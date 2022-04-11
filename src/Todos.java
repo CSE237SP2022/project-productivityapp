@@ -32,7 +32,16 @@ public class Todos {
 		}
 	}
 	
-	static void createTodos() {
+
+	
+	static void createTodos(Todo newTodo) {
+
+		    todosMap.put(todoCounter, newTodo);
+		    todoCounter++;
+		    System.out.println("New todo has been added to list!");
+	}
+	 
+	static Todo createTodoPrompt() {
 		System.out.println("Enter info for a new todo (type 'exit' to leave): ");
 	    String todo = scannerObj.nextLine();  
 	    System.out.println("Your new todo is: " + todo);
@@ -63,11 +72,15 @@ public class Todos {
 		    	}
 
 		    }
-		    todosMap.put(todoCounter, newTodo);
-		    todoCounter++;
-		    System.out.println("New todo has been added to list!");
+
+		    return newTodo;
 	    }
+	
+	    return null;
+		
+		
 	}
+	
 	
 	public static boolean isNum(String str) {  
 	  try {  
@@ -199,7 +212,9 @@ public class Todos {
 			System.out.println("type 'exit' to exit from program");
 			String todoCommand = scannerObj.nextLine();
 			if(todoCommand.equals("create")) {
-				createTodos();
+				//createTodos();
+				Todo newTodo=createTodoPrompt();
+				createTodos(newTodo);
 			}
 			else if(todoCommand.equals("delete")) {
 				deleteTodos();
