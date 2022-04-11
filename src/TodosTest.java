@@ -43,8 +43,7 @@ class TodosTest {
 		int prevTodoCounter = Todos.todoCounter;
 		
 		Todos.createTodos(todo1);
-		// confirm that this todo exists in todoMap
-		
+		assertEquals(true,Todos.todosMap.containsValue(todo1));
 		assertEquals(prevTodoCounter+1,Todos.todoCounter);
 		
 		
