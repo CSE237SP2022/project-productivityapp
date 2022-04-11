@@ -2,7 +2,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 import java.time.Instant;
-
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,8 +14,10 @@ class TodosTest {
 	String progress = "25";
 	String creationDate = Instant.now() +"";
 	
-	SubTodo subTodo = new SubTodo(0,1, "make bed", dueDate, progress,creationDate);
+	
 	Todo todo1 = new Todo(1, description, dueDate, progress,creationDate);
+	SubTodo subTodo = new SubTodo(0,1, "make bed", dueDate, progress,creationDate);
+	
 	Todo todo2 = new Todo(2, "put away clothes", dueDate, progress,creationDate);
 	Todo todo3 = new Todo(3, "water plants", dueDate, progress,creationDate);
 	
@@ -65,7 +67,7 @@ class TodosTest {
 		assertEquals(false,Todos.isNum(word));
 		assertEquals(false,Todos.isNum(decimal));
 		assertEquals(true,Todos.isNum(negativeInteger));
-		//fail("Not yet implemented");
+		
 	}
 
 	@Test
@@ -80,7 +82,15 @@ class TodosTest {
 
 	@Test
 	void testAddSubTodo() {
-		//fail("Not yet implemented");
+		int prevSubTodoCounter = Todos.subTodoCounter;
+		Todos.createTodos(todo1);
+		Todos.addSubTodo(todo1.id,subTodo);
+		
+		ArrayList<SubTodo> subList = todo1.getSubTodoList();
+		
+		assertEquals(true, subList.contains(subTodo));
+		assertEquals(prevSubTodoCounter+1,Todos.subTodoCounter);
+		
 	}
 
 }
