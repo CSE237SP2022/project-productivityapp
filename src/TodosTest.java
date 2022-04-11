@@ -51,7 +51,21 @@ class TodosTest {
 
 	@Test
 	void testIsNum() {
-		fail("Not yet implemented");
+		//test for only integers
+		String letter = "a";
+		String integer = "15";
+		String integer1 = "0";
+		String word = "word";
+		String decimal ="1.015";
+		String negativeInteger ="-1";
+		
+		assertEquals(false,Todos.isNum(letter));
+		assertEquals(true,Todos.isNum(integer));
+		assertEquals(true,Todos.isNum(integer1));
+		assertEquals(false,Todos.isNum(word));
+		assertEquals(false,Todos.isNum(decimal));
+		assertEquals(true,Todos.isNum(negativeInteger));
+		//fail("Not yet implemented");
 	}
 
 	@Test
