@@ -21,6 +21,8 @@ Allow sorting of list by due date <br />
 Allow soritng of list by urgency <br />
 
 How to Run Program: <br />
+git clone https://github.com/CSE237SP2022/project-productivityapp.git
+cd project-productivityapp
 javac Todos.java <br />
 java Todos <br />
 
