@@ -186,7 +186,14 @@ public class Todos {
 	    }
 	}
 	
-	public static void addSubTodo() {
+	public static void addSubTodo(int todoId,SubTodo newSubTodo) {
+	    System.out.println("Sub-todo has been added");
+	    todosMap.get(todoId).addSubTodo(newSubTodo);
+	    subTodoCounter++;
+
+	}
+	
+	public static SubTodo addSubTodoPrompt() {
 		System.out.println("Enter name or id of todo you would like add subtodos too (type 'exit' to leave): ");
 	    String todo = scannerObj.nextLine();
 	    if(!todo.equals("exit")) {
@@ -215,13 +222,18 @@ public class Todos {
 				    System.out.println("Enter current progress on todo 0-100 (don't include % sign)");
 				    String subProgress = scannerObj.nextLine()+"%";
 				    SubTodo newSubTodo = new SubTodo(subTodoCounter, todoCounter,subTodoInfo, subDueDate,subProgress, subInstant+"");
+				    /*System.out.println("Sub-todo has been added");
 				    todosMap.get(todoId).addSubTodo(newSubTodo);
-				    subTodoCounter++;
+				    subTodoCounter++;*/
+				    addSubTodo(todoId,newSubTodo);
 				    System.out.println("Would you like to keep adding sub-todos? (yes/no)");
 				    continueAddingSubTodos = scannerObj.nextLine();
+				    
 		    	}
 	    	}
 	    }
+		SubTodo newSubTodo = new SubTodo(0);
+		return newSubTodo;
 	}
 	
 	public static void main(String[] args) {
@@ -249,7 +261,9 @@ public class Todos {
 				selectTodo();
 			}
 			else if(todoCommand.equals("add subtodo")) {
-				addSubTodo();
+				addSubTodoPrompt();
+				
+			
 			}
 			else if(todoCommand.equals("print")) {
 				printTodos();
