@@ -80,6 +80,29 @@ public class Todos {
 		
 		
 	}
+	static void alphabeticalSortTodos() {
+		HashMap<String, Integer> tempMap = new HashMap<>();
+		for(int key: todosMap.keySet()) {
+			tempMap.put(todosMap.get(key).description, key);
+		}
+		List sortedTodos=new ArrayList(tempMap.keySet());
+		Collections.sort(sortedTodos);
+		for(int i=0;i<sortedTodos.size();++i) {
+			String todoName = sortedTodos.get(i)+"";
+			int todoId = tempMap.get(todoName);
+			String todoDueDate = todosMap.get(todoId).dueDate;
+			String todoProgress = todosMap.get(todoId).progress;
+			System.out.print(todoId);
+			System.out.print("        ");
+			System.out.print(todoName);
+			System.out.print("        ");
+			System.out.print(todoDueDate);
+			System.out.print("        ");
+			System.out.print(todoProgress);
+			System.out.print("        ");
+			System.out.println("");
+		}
+	}
 	
 	
 	public static boolean isNum(String str) {  
@@ -230,6 +253,9 @@ public class Todos {
 			}
 			else if(todoCommand.equals("print")) {
 				printTodos();
+			}
+			else if(todoCommand.equals("print filter alphabetical")) {
+				alphabeticalSortTodos();
 			}
 			else if(todoCommand.equals("exit")) {
 				exitProgram = true;
