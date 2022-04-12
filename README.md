@@ -31,4 +31,23 @@ type "create" to create a new todo <br />
 type "print to show all created todos <br />
 type "exit" to exit program
 
+Iteration 2:
 
+What user stories were completed this iteration?
+A user can now sort todos alphabetically
+A user can now edit a todo
+A user can now add sub-todos to each existing todo
+
+What user stories do you intend to complete next iteration?
+A user will be able to filter todos in reverse alphabetical order
+A user will be albe to filter todos by date created
+A user will be able to assing a level of urgency to todos
+A user will be able to see the completion percentage of each todo based on the number of sub-todos completed
+
+Is there anything that you implemented but doesn't currently work?
+
+
+What command are needed to compile and run your code from the command line?
+To run code:
+Use bash script todosScript.sh
+Type into command line ./todosScript.sh
