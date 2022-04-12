@@ -29,25 +29,25 @@ java Todos <br />
 Commands for using program: <br />
 type "create" to create a new todo <br />
 type "print to show all created todos <br />
-type "exit" to exit program
+type "exit" to exit program <br />
 
-Iteration 2:
+Iteration 2:  <br />
 
-What user stories were completed this iteration?
-A user can now sort todos alphabetically
-A user can now edit a todo
-A user can now add sub-todos to each existing todo
+What user stories were completed this iteration?  <br />
+A user can now sort todos alphabetically  <br />
+A user can now edit a todo  <br />
+A user can now add sub-todos to each existing todo  <br />
 
-What user stories do you intend to complete next iteration?
-A user will be able to filter todos in reverse alphabetical order
-A user will be albe to filter todos by date created
-A user will be able to assing a level of urgency to todos
-A user will be able to see the completion percentage of each todo based on the number of sub-todos completed
+What user stories do you intend to complete next iteration?  <br />
+A user will be able to filter todos in reverse alphabetical order  <br />
+A user will be albe to filter todos by date created  <br />
+A user will be able to assing a level of urgency to todos  <br />
+A user will be able to see the completion percentage of each todo based on the number of sub-todos completed  <br />
 
-Is there anything that you implemented but doesn't currently work?
+Is there anything that you implemented but doesn't currently work?  <br />
 
 
-What command are needed to compile and run your code from the command line?
-To run code:
-Use bash script todosScript.sh
-Type into command line ./todosScript.sh
+What command are needed to compile and run your code from the command line?  <br />
+To run code:  <br />
+Use bash script todosScript.sh  <br />
+Type into command line ./todosScript.sh  <br />
