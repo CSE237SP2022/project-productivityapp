@@ -174,10 +174,8 @@ public class Todos {
 		
 	}
 	
-	static void deleteTodos() {
-		System.out.println("Enter name or id of todo you would like to delete (type 'exit' to leave): ");
-	    String todo = scannerObj.nextLine();
-	    if(!todo.equals("exit")) {
+	static void deleteTodos(String todo) {
+		if(!todo.equals("exit")) {
 		    if(isNum(todo)) {
 		    	todosMap.remove(Integer.parseInt(todo));
 		    }
@@ -196,6 +194,14 @@ public class Todos {
 		    	}
 		    }
 	    }
+		
+	}
+	
+	static void deleteTodosPrompt() {
+		System.out.println("Enter name or id of todo you would like to delete (type 'exit' to leave): ");
+	    String todo = scannerObj.nextLine();
+	    deleteTodos(todo);
+		
 	}
 	
 	public static void addSubTodo(int todoId,SubTodo newSubTodo) {
@@ -256,6 +262,7 @@ public class Todos {
 			System.out.println("type 'print' to print out all todos");
 			System.out.println("type 'select' to see info about a particular todo");
 			System.out.println("type 'add subtodo' to add a subtodo to one of the main todos");
+			System.out.println("type 'delete' to delete a todo");
 			System.out.println("type 'exit' to exit from program");
 			String todoCommand = scannerObj.nextLine();
 			if(todoCommand.equals("create")) {
@@ -264,7 +271,7 @@ public class Todos {
 				createTodos(newTodo);
 			}
 			else if(todoCommand.equals("delete")) {
-				deleteTodos();
+				deleteTodosPrompt();
 			}
 			else if(todoCommand.equals("edit")) {
 				System.out.println("edit todos function here");
@@ -275,7 +282,6 @@ public class Todos {
 			else if(todoCommand.equals("add subtodo")) {
 				addSubTodoPrompt();
 				
-			
 			}
 			else if(todoCommand.equals("print")) {
 				printTodos();

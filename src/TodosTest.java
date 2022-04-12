@@ -13,7 +13,7 @@ class TodosTest {
 	String dueDate ="01/01/2000";
 	String progress = "25";
 	String creationDate = Instant.now() +"";
-	
+
 	
 	Todo todo1 = new Todo(1, description, dueDate, progress,creationDate);
 	SubTodo subTodo = new SubTodo(0,1, "make bed", dueDate, progress,creationDate);
