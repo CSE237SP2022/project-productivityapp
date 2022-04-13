@@ -105,6 +105,41 @@ public class Todos {
 	}
 	
 	
+	static void reverseAlphabeticalSortTodos() {
+		//create a placeholder hashmap to copy original values into
+		HashMap<String, Integer> temporary = new HashMap<>();
+		
+		//loop to copy original to-do info, temp variable for sorted values +
+		//method to help with reverse sorting
+		for(int key: todosMap.keySet()) {
+			temporary.put(todosMap.get(key).description, key);
+		}
+		List sorted = new ArrayList(temporary.keySet());
+		Collections.sort(sorted, Collections.reverseOrder(String.CASE_INSENSITIVE_ORDER));
+		
+		//loop through sorted list of to-do items and print them out
+		for(int i = 0; i < sorted.size(); i++) {
+			//obtaining to-do item information (due date, name, id #, progress)
+			String itemName = sorted.get(i) + "";
+			int itemId = temporary.get(itemName);
+			String itemDate = todosMap.get(itemId).dueDate;
+			String itemProgress = todosMap.get(itemId).progress;
+			
+			//print out each component of to-do items
+			System.out.print(itemId);
+			System.out.print("        ");
+			System.out.print(itemName);
+			System.out.print("        ");
+			System.out.print(itemDate);
+			System.out.print("        ");
+			System.out.print(itemProgress);
+			System.out.print("        ");
+			System.out.println("");
+			
+		}
+	}
+	
+	
 	public static boolean isNum(String str) {  
 	  try {  
 	    int i = Integer.parseInt(str);  
@@ -288,6 +323,9 @@ public class Todos {
 			}
 			else if(todoCommand.equals("print filter alphabetical")) {
 				alphabeticalSortTodos();
+			}
+			else if(todoCommand.equals("print filter reverse alphabetical")){
+				reverseAlphabeticalSortTodos();
 			}
 			else if(todoCommand.equals("exit")) {
 				exitProgram = true;
