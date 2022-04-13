@@ -29,17 +29,20 @@ java Todos <br />
 Commands for using program: <br />
 type "create" to create a new todo <br />
 type "print to show all created todos <br />
+* to filter alphabetically, type "print filter alphabetical"
+* to filter in reverse alphabetical order, type "print filter reverse alphabetical" <br />
+
 type "exit" to exit program <br />
 
 Iteration 2:  <br />
 
 What user stories were completed this iteration?  <br />
 A user can now sort todos alphabetically  <br />
+A user can now filter todos in reverse alphabetical order  <br />
 A user can now edit a todo  <br />
 A user can now add sub-todos to each existing todo  <br />
 
 What user stories do you intend to complete next iteration?  <br />
-A user will be able to filter todos in reverse alphabetical order  <br />
 A user will be albe to filter todos by date created  <br />
 A user will be able to assing a level of urgency to todos  <br />
 A user will be able to see the completion percentage of each todo based on the number of sub-todos completed  <br />
