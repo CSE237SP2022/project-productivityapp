@@ -42,11 +42,11 @@ class TodosTest {
 
 	@Test
 	void testCreateTodos() {
-		int prevTodoCounter = Todos.todoCounter;
+		int prevTodoCounter = ProductivityApp.todoCounter;
 		
-		Todos.createTodos(todo1);
-		assertEquals(true,Todos.todosMap.containsValue(todo1));
-		assertEquals(prevTodoCounter+1,Todos.todoCounter);
+		ProductivityApp.createTodos(todo1);
+		assertEquals(true,ProductivityApp.todosMap.containsValue(todo1));
+		assertEquals(prevTodoCounter+1,ProductivityApp.todoCounter);
 		
 		
 	}
@@ -61,19 +61,19 @@ class TodosTest {
 		String decimal ="1.015";
 		String negativeInteger ="-1";
 		
-		assertEquals(false,Todos.isNum(letter));
-		assertEquals(true,Todos.isNum(integer));
-		assertEquals(true,Todos.isNum(integer1));
-		assertEquals(false,Todos.isNum(word));
-		assertEquals(false,Todos.isNum(decimal));
-		assertEquals(true,Todos.isNum(negativeInteger));
+		assertEquals(false,ProductivityApp.isNum(letter));
+		assertEquals(true,ProductivityApp.isNum(integer));
+		assertEquals(true,ProductivityApp.isNum(integer1));
+		assertEquals(false,ProductivityApp.isNum(word));
+		assertEquals(false,ProductivityApp.isNum(decimal));
+		assertEquals(true,ProductivityApp.isNum(negativeInteger));
 		
 	}
 
 	@Test
 	void testSelectTodo() {
-		Todos.createTodos(todo2);
-		assertEquals(todo2,Todos.selectTodo(todo2.id));
+		ProductivityApp.createTodos(todo2);
+		assertEquals(todo2,ProductivityApp.selectTodo(todo2.id));
 		
 	}
 
@@ -84,14 +84,14 @@ class TodosTest {
 
 	@Test
 	void testAddSubTodo() {
-		int prevSubTodoCounter = Todos.subTodoCounter;
-		Todos.createTodos(todo1);
-		Todos.addSubTodo(todo1.id,subTodo);
+		int prevSubTodoCounter = ProductivityApp.subTodoCounter;
+		ProductivityApp.createTodos(todo1);
+		ProductivityApp.addSubTodo(todo1.id,subTodo);
 		
 		ArrayList<SubTodo> subList = todo1.getSubTodoList();
 		
 		assertEquals(true, subList.contains(subTodo));
-		assertEquals(prevSubTodoCounter+1,Todos.subTodoCounter);
+		assertEquals(prevSubTodoCounter+1,ProductivityApp.subTodoCounter);
 		
 	}
 

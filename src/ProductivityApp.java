@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.*;
 import java.time.Instant;
 
-public class Todos {
+public class ProductivityApp {
 	
 	static public HashMap<Integer,Todo> todosMap = new HashMap<>();
 	static public HashMap<Integer, SubTodo> subTodosMap = new HashMap<>();
@@ -32,10 +32,7 @@ public class Todos {
 		}
 	}
 	
-
-	
 	static void createTodos(Todo newTodo) {
-
 		    todosMap.put(todoCounter, newTodo);
 		    todoCounter++;
 		    System.out.println("New todo has been added to list!");
@@ -139,7 +136,6 @@ public class Todos {
 		}
 	}
 	
-	
 	public static boolean isNum(String str) {  
 	  try {  
 	    int i = Integer.parseInt(str);  
@@ -159,7 +155,6 @@ public class Todos {
 		System.out.println("Enter name or id of todo you would like to select (type 'exit' to leave): ");
 	    String todo = scannerObj.nextLine();
 	    if(!todo.equals("exit")) {
-	    	
 	    	int todoId = -1;
 		    if(isNum(todo)) {
 		    	todoId = Integer.parseInt(todo);
@@ -177,7 +172,6 @@ public class Todos {
 	    	else {
 	    		
 	    		Todo selectedTodo =selectTodo(todoId);
-	    		
 	    		String todoDescription = selectedTodo.description;
     			String todoDueDate = selectedTodo.dueDate;
     			String todoProgress = selectedTodo.progress;
@@ -205,8 +199,6 @@ public class Todos {
     			}
 	    	}
 	    }
-	    
-		
 	}
 	
 	static void deleteTodos(String todo) {
@@ -300,6 +292,7 @@ public class Todos {
 			System.out.println("type 'delete' to delete a todo");
 			System.out.println("type 'exit' to exit from program");
 			String todoCommand = scannerObj.nextLine();
+			TodosList todoList = new TodosList();
 			if(todoCommand.equals("create")) {
 				//createTodos();
 				Todo newTodo=createTodoPrompt();
@@ -316,7 +309,6 @@ public class Todos {
 			}
 			else if(todoCommand.equals("add subtodo")) {
 				addSubTodoPrompt();
-				
 			}
 			else if(todoCommand.equals("print")) {
 				printTodos();
