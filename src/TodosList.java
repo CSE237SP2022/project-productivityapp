@@ -127,6 +127,31 @@ public class TodosList {
 		}
 	}
 	
+	public void dateSortTodos() {
+		HashMap<String, Integer> tempMap = new HashMap<>();
+		for(int key: todosMap.keySet()) {
+			tempMap.put(todosMap.get(key).dueDate, key);
+		}
+		List sortedTodos=new ArrayList(tempMap.keySet());
+		Collections.sort(sortedTodos);
+		for(int i=0;i<sortedTodos.size();++i) {
+			String todoDueDate = sortedTodos.get(i)+"";
+			int todoId = tempMap.get(todoDueDate);
+			
+			String todoName = todosMap.get(todoId).description;
+			String todoProgress = todosMap.get(todoId).progress;
+			System.out.print(todoId);
+			System.out.print("        ");
+			System.out.print(todoName);
+			System.out.print("        ");
+			System.out.print(todoDueDate);
+			System.out.print("        ");
+			System.out.print(todoProgress);
+			System.out.print("        ");
+			System.out.println("");
+		}
+	}
+	
 	public static boolean isNum(String str) {  
 		  try {  
 		    int i = Integer.parseInt(str);  
