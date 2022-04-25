@@ -15,6 +15,9 @@ public class ProductivityApp {
 			System.out.println("type 'create' to create a new todo");
 			System.out.println("type 'edit' to edit todo");
 			System.out.println("type 'print' to print out all todos");
+			System.out.println("type 'print filter alphabetical' to filter todos alphabetically");
+			System.out.println("type 'print filter reverse alphabetical' to filter todos reverse alphabetically");
+			System.out.println("type 'print filter date' to filter todos by due date");
 			System.out.println("type 'select' to see info about a particular todo");
 			System.out.println("type 'add subtodo' to add a subtodo to one of the main todos");
 			System.out.println("type 'delete' to delete a todo");
@@ -44,6 +47,9 @@ public class ProductivityApp {
 			}
 			else if(todoCommand.equals("print filter reverse alphabetical")){
 				todosList.reverseAlphabeticalSortTodos();
+			}
+			else if(todoCommand.equals("print filter date")) {
+				todosList.dateSortTodos();
 			}
 			else if(todoCommand.equals("exit")) {
 				exitProgram = true;
