@@ -1,40 +1,29 @@
 # project-productivityapp
 project-productivityapp created by GitHub Classroom
-//Productivity App <br />
-//Todo list <br />
-//rank Urgencty <br />
-//keep notes <br />
-//dates <br />
-//fitler: due date, alphabetical order... <br />
-//"task progress bar" <br />
-First Iteration : TODO LIST <br />
 
-What we have done: <br />
+<br />
+<strong>How to Run Program: </strong> <br />
+git clone https://github.com/CSE237SP2022/project-productivityapp.git <br />
+cd project-productivityapp <br />
+./todosScript.sh  <br />
+<br />
+<strong> Commands for using program: </strong><br />
+type "create" to create a new todo <br/>
+type "print to show all created todos <br />
+* to filter alphabetically, type "print filter alphabetical"
+* to filter in reverse alphabetical order, type "print filter reverse alphabetical" <br />
+type "exit" to exit program <br />
+<br />
+
+<strong>Iteration 1: </strong><br />
+
 Initialized a hash map that will store our list of todo's. The key for this map will be the timestamp at which the ToDo was added. <br />
 Added functionality to add/remove todo's from the overall list <br />
 Added function to sort todos alphabetically <br />
 
-Steps for iteration 2: <br />
-Allow editing todo <br />
-Finishing sorting alphabetically functionality <br />
-Allow sorting of list by due date <br />
-Allow soritng of list by urgency <br />
+<br />
 
-How to Run Program: <br />
-git clone https://github.com/CSE237SP2022/project-productivityapp.git <br />
-cd project-productivityapp <br />
-javac Todos.java <br />
-java Todos <br />
-
-Commands for using program: <br />
-type "create" to create a new todo <br />
-type "print to show all created todos <br />
-* to filter alphabetically, type "print filter alphabetical"
-* to filter in reverse alphabetical order, type "print filter reverse alphabetical" <br />
-
-type "exit" to exit program <br />
-
-Iteration 2:  <br />
+<strong>Iteration 2: </strong> <br />
 
 What user stories were completed this iteration?  <br />
 A user can now sort todos alphabetically  <br />
@@ -49,8 +38,7 @@ A user will be able to see the completion percentage of each todo based on the n
 
 Is there anything that you implemented but doesn't currently work?  <br />
 
+<br />
+<strong>Iteration 3: </strong><br />
 
-What command are needed to compile and run your code from the command line?  <br />
-To run code:  <br />
-Use bash script todosScript.sh  <br />
-Type into command line ./todosScript.sh  <br />
+

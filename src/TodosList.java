@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 public class TodosList {
 	private HashMap<Integer,Todo> todosMap;
-	//public HashMap<Integer, SubTodo> subTodosMap = new HashMap<>();
 	private int todoCounter;
 	private int subTodoCounter;
 	private Scanner scannerObj = new Scanner(System.in);

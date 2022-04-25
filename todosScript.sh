@@ -1,11 +1,7 @@
 #!/bin/bash
 
-GIT="https://github.com/CSE237SP2022/project-productivityapp.git"
+cd src
 
-git clone $GIT
+javac ProductivityApp.java
 
-cd project-productivityapp/src
-
-javac Todos.java
-
-java Todos
+java ProductivityApp
