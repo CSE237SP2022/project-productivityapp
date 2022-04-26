@@ -1,24 +1,57 @@
 import java.util.*;
 public class Todo {
-	public String description,dueDate, progress,creationDate;
-	public int id;
+	private String description,dueDate, progress,creationDate;
+	private int id;
 	private ArrayList<SubTodo> subTodoList = new ArrayList<>();
+	
 	public Todo(int id) {
 		this.id= id;
 	}
-	public Todo(int id, String description, String dueDate, String progress,String creationDate) {
-		this.id = id;
-		this.description = description;
-		this.dueDate = dueDate;
-		this.progress = progress;
-		this.creationDate = creationDate;
+	
+	public int getId() {
+		return id;
 	}
+	
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	
+	public void setDueDate(String date) {
+		this.dueDate = date;
+	}
+	
+	public String getDueDate() {
+		return dueDate;
+	}
+	
+	public void setProgress(String progress) {
+		this.progress = progress;
+	}
+	
+	public String getProgress() {
+		return progress;
+	}
+	
+	public void setCreationDate(String date) {
+		this.creationDate = date;
+	}
+	
+	public String getCreationDate() {
+		return creationDate;
+	}
+	
 	public void addSubTodo(SubTodo todo) {
 		subTodoList.add(todo);
 	}
+	
 	public ArrayList<SubTodo> getSubTodoList() {
 		return subTodoList;
 	}
+	
 	public void deleteAllSubtodos() {
 		subTodoList.clear();
 	}
