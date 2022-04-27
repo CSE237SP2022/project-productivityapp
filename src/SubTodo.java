@@ -13,9 +13,10 @@ public class SubTodo {
 	public int getId() {
 		return id;
 	}
-	public int getParentTodoId() {
+    public int getParentTodoId() {
 		return mainTodoId;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
