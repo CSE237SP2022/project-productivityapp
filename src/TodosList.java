@@ -110,8 +110,6 @@ public class TodosList {
 		for(int i=0;i<sortedTodos.size();++i) {
 			String todoName = sortedTodos.get(i)+"";
 			int todoId = tempMap.get(todoName);
-			String todoDueDate = todosMap.get(todoId).getDueDate();
-			String todoProgress = todosMap.get(todoId).getProgress();
 			printingOutFilteredTodos(todoName, todoId);
 		}
 	}
@@ -152,13 +150,18 @@ public class TodosList {
 		System.out.println("");
 	}
 	
-	public void dateSortTodos() {
+	public List<String> dateSortTodos(HashMap<String, Integer> tempMap) {
+		List<String> sortedTodos=new ArrayList<String>(tempMap.keySet());
+		Collections.sort(sortedTodos);
+		return sortedTodos;
+	}
+	public void PrintDateSortTodos() {
 		HashMap<String, Integer> tempMap = new HashMap<>();
 		for(int key: todosMap.keySet()) {
 			tempMap.put(todosMap.get(key).getDueDate(), key);
 		}
-		List<String> sortedTodos=new ArrayList<String>(tempMap.keySet());
-		Collections.sort(sortedTodos);
+		List<String> sortedTodos = dateSortTodos(tempMap);
+
 		for(int i=0;i<sortedTodos.size();++i) {
 			String todoDueDate = sortedTodos.get(i)+"";
 			int todoId = tempMap.get(todoDueDate);
@@ -176,6 +179,7 @@ public class TodosList {
 			System.out.println("");
 		}
 	}
+	
 	
 	public boolean checkDateFormat(String date) {
 		if(date.length()!=10) {

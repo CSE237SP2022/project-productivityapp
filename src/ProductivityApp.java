@@ -52,7 +52,7 @@ public class ProductivityApp {
 				
 			}
 			else if(todoCommand.equals("print filter date")) {
-				todosList.dateSortTodos();
+				todosList.PrintDateSortTodos();
 
 			}
 			else if(todoCommand.equals("exit")) {

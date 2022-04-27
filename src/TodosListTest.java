@@ -92,8 +92,6 @@ class TodosListTest {
 		}
 		assertEquals(true,sorted);
 
-				
-
 	}
 
 	
@@ -129,16 +127,38 @@ class TodosListTest {
 
 			
 	}
-	/*
-	@Test
-	void testPrintingOutFilteredTodos() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	void testDateSortTodos() {
-		fail("Not yet implemented");
-	}*/
+		Todo testTodo1 = new Todo (0);
+		testTodo1.setDueDate("05/20/1998");
+		Todo testTodo2 = new Todo (1);
+		testTodo2.setDueDate("12/31/2000");
+		Todo testTodo3 = new Todo (2);
+		testTodo3.setDueDate("01/20/1972");
+		testedTodosList.addTodoToList(testTodo1);
+		testedTodosList.addTodoToList(testTodo2);
+		testedTodosList.addTodoToList(testTodo3);
+		
+		HashMap<String, Integer> tempMap = new HashMap<>();
+		for(int key: testedTodosList.getTodosMap().keySet()) {
+			tempMap.put(testedTodosList.getTodosMap().get(key).getDueDate(), key);
+		}
+		
+		Boolean sorted = false;
+		
+		
+		List<String> sortedTodoList = testedTodosList.dateSortTodos(tempMap);
+		
+		String prevListItem = ""; 
+		for (String listItem: sortedTodoList) {
+		    if (listItem.compareTo(prevListItem) >= 0)
+		        sorted=true;
+		    prevListItem = listItem;
+		}
+		assertEquals(true,sorted);
+		//fail("Not yet implemented");
+	}
 
 	@Test
 	void testCheckDateFormat() {
