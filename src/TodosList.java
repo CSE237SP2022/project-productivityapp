@@ -96,38 +96,40 @@ public class TodosList {
 		return todosMap.get(id);
 	}
 	
-	public void alphabeticalSortTodos() {
+	public List<String> alphabeticalSortTodos(HashMap<String, Integer> tempMap) {
+		List<String> sortedTodos=new ArrayList<String>(tempMap.keySet());
+		Collections.sort(sortedTodos);
+		return sortedTodos;
+	}
+	public void PrintAlphabeticalSortTodos() {
 		HashMap<String, Integer> tempMap = new HashMap<>();
 		for(int key: todosMap.keySet()) {
 			tempMap.put(todosMap.get(key).getDescription(), key);
 		}
-		List<String> sortedTodos=new ArrayList<String>(tempMap.keySet());
-		Collections.sort(sortedTodos);
+		List<String> sortedTodos = alphabeticalSortTodos(tempMap);
 		for(int i=0;i<sortedTodos.size();++i) {
 			String todoName = sortedTodos.get(i)+"";
 			int todoId = tempMap.get(todoName);
 			String todoDueDate = todosMap.get(todoId).getDueDate();
 			String todoProgress = todosMap.get(todoId).getProgress();
-			System.out.print(todoId);
-			System.out.print("        ");
-			System.out.print(todoName);
-			System.out.print("        ");
-			System.out.print(todoDueDate);
-			System.out.print("        ");
-			System.out.print(todoProgress);
-			System.out.print("        ");
-			System.out.println("");
+			printingOutFilteredTodos(todoName, todoId);
 		}
 	}
 	
-	public void reverseAlphabeticalSortTodos() {
-		HashMap<String, Integer> temporary = new HashMap<>();
+	
+	public List<String> reverseAlphabeticalSortTodos(HashMap<String, Integer> tempMap) {
+		List<String> sorted = new ArrayList<String>(tempMap.keySet());
+		Collections.sort(sorted, Collections.reverseOrder(String.CASE_INSENSITIVE_ORDER));
+		return sorted;
 
+	}
+	public void PrintReverseAlphabeticalSortTodos() {
+		HashMap<String, Integer> temporary = new HashMap<>();
+		
 		for(int key: todosMap.keySet()) {
 			temporary.put(todosMap.get(key).getDescription(), key);
 		}
-		List<String> sorted = new ArrayList<String>(temporary.keySet());
-		Collections.sort(sorted, Collections.reverseOrder(String.CASE_INSENSITIVE_ORDER));
+		List<String> sorted = reverseAlphabeticalSortTodos(temporary);
 		
 		for(int i = 0; i < sorted.size(); i++) {
 			String itemName = sorted.get(i) + "";
@@ -136,7 +138,6 @@ public class TodosList {
 			
 		}
 	}
-	
 	public void printingOutFilteredTodos(String todoName, int todoId) {
 		String itemDate = todosMap.get(todoId).getDueDate();
 		String itemProgress = todosMap.get(todoId).getProgress();

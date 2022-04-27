@@ -1,6 +1,8 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -60,16 +62,74 @@ class TodosListTest {
 		
 	}
 
-	/*@Test
+	@Test
 	void testAlphabeticalSortTodos() {
-		fail("Not yet implemented");
+		Todo testTodo1 = new Todo (0);
+		testTodo1.setDescription("pears");
+		Todo testTodo2 = new Todo (1);
+		testTodo2.setDescription("apples");
+		Todo testTodo3 = new Todo (2);
+		testTodo3.setDescription("oranges");
+		testedTodosList.addTodoToList(testTodo1);
+		testedTodosList.addTodoToList(testTodo2);
+		testedTodosList.addTodoToList(testTodo3);
+		
+		HashMap<String, Integer> tempMap = new HashMap<>();
+		for(int key: testedTodosList.getTodosMap().keySet()) {
+			tempMap.put(testedTodosList.getTodosMap().get(key).getDescription(), key);
+		}
+		
+		Boolean sorted = false;
+		
+		
+		List<String> sortedTodoList = testedTodosList.alphabeticalSortTodos(tempMap);
+		
+		String prevListItem = ""; 
+		for (String listItem: sortedTodoList) {
+		    if (listItem.compareTo(prevListItem) >= 0)
+		        sorted=true;
+		    prevListItem = listItem;
+		}
+		assertEquals(true,sorted);
+
+				
+
 	}
 
+	
 	@Test
 	void testReverseAlphabeticalSortTodos() {
-		fail("Not yet implemented");
-	}
+		Todo testTodo1 = new Todo (0);
+		testTodo1.setDescription("pears");
+		Todo testTodo2 = new Todo (1);
+		testTodo2.setDescription("apples");
+		Todo testTodo3 = new Todo (2);
+		testTodo3.setDescription("oranges");
+		testedTodosList.addTodoToList(testTodo1);
+		testedTodosList.addTodoToList(testTodo2);
+		testedTodosList.addTodoToList(testTodo3);
+		
+		HashMap<String, Integer> tempMap = new HashMap<>();
+		for(int key: testedTodosList.getTodosMap().keySet()) {
+			tempMap.put(testedTodosList.getTodosMap().get(key).getDescription(), key);
+		}
+		
+		Boolean sorted = false;
+		
+		
+		List<String> sortedTodoList = testedTodosList.reverseAlphabeticalSortTodos(tempMap);
+		
+		String prevListItem = ""; 
+		for (String listItem: sortedTodoList) {
+		    if (listItem.compareTo(prevListItem) < 0)
+		        sorted=true;
+		    prevListItem = listItem;
+		}
+		assertEquals(true,sorted);
 
+			
+	}
+	/*
 	@Test
 	void testPrintingOutFilteredTodos() {
 		fail("Not yet implemented");

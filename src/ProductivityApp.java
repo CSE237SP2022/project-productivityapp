@@ -1,4 +1,8 @@
+
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.*;
+import java.time.Instant;
 
 public class ProductivityApp {
 
@@ -9,7 +13,9 @@ public class ProductivityApp {
 		while(!exitProgram) {
 			System.out.println("Todo list commands: ");
 			System.out.println("type 'create' to create a new todo");
+			System.out.println("type 'edit' to edit todo");
 			System.out.println("type 'print' to print out all todos");
+
 			System.out.println("type 'print filter alphabetical' to filter todos alphabetically");
 			System.out.println("type 'print filter reverse alphabetical' to filter todos reverse alphabetically");
 			System.out.println("type 'print filter date' to filter todos by due date");
@@ -25,6 +31,9 @@ public class ProductivityApp {
 			else if(todoCommand.equals("delete")) {
 				todosList.deleteTodosPrompt();
 			}
+			else if(todoCommand.equals("edit")) {
+				System.out.println("edit todos function here");
+			}
 			else if(todoCommand.equals("select")) {
 				todosList.selectTodoPrompt();
 			}
@@ -35,13 +44,16 @@ public class ProductivityApp {
 				todosList.printTodos();
 			}
 			else if(todoCommand.equals("print filter alphabetical")) {
-				todosList.alphabeticalSortTodos();
+				todosList.PrintAlphabeticalSortTodos(); 
+				
 			}
 			else if(todoCommand.equals("print filter reverse alphabetical")){
-				todosList.reverseAlphabeticalSortTodos();
+				todosList.PrintReverseAlphabeticalSortTodos();
+				
 			}
 			else if(todoCommand.equals("print filter date")) {
 				todosList.dateSortTodos();
+
 			}
 			else if(todoCommand.equals("exit")) {
 				exitProgram = true;
@@ -52,7 +64,7 @@ public class ProductivityApp {
 			System.out.println("");
 			System.out.println("");
 		}
-		scannerObj.close();
 	}
+	
 	
 }
