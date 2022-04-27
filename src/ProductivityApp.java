@@ -9,7 +9,6 @@ public class ProductivityApp {
 		while(!exitProgram) {
 			System.out.println("Todo list commands: ");
 			System.out.println("type 'create' to create a new todo");
-			System.out.println("type 'edit' to edit todo");
 			System.out.println("type 'print' to print out all todos");
 			System.out.println("type 'print filter alphabetical' to filter todos alphabetically");
 			System.out.println("type 'print filter reverse alphabetical' to filter todos reverse alphabetically");
@@ -25,9 +24,6 @@ public class ProductivityApp {
 			}
 			else if(todoCommand.equals("delete")) {
 				todosList.deleteTodosPrompt();
-			}
-			else if(todoCommand.equals("edit")) {
-				System.out.println("edit todos function here");
 			}
 			else if(todoCommand.equals("select")) {
 				todosList.selectTodoPrompt();
