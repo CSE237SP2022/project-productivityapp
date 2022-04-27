@@ -36,9 +36,9 @@ A user will be albe to filter todos by date created  <br />
 A user will be able to assing a level of urgency to todos  <br />
 A user will be able to see the completion percentage of each todo based on the number of sub-todos completed  <br />
 
-Is there anything that you implemented but doesn't currently work?  <br />
-
 <br />
 <strong>Iteration 3: </strong><br />
-
+A user can filter by date created <br />
+A user can see updated progress of main todo based on progress of its subtodos <br />
+A user will get an error message when formatting date and progress percentage incorrectly  <br />
 
