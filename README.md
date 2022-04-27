@@ -38,7 +38,9 @@ A user will be able to see the completion percentage of each todo based on the n
 
 <br />
 <strong>Iteration 3: </strong><br />
-A user can filter by date created <br />
+
+What user stories were completed this iteration?  <br />
+A user can filter todos by date created <br />
 A user can see updated progress of main todo based on progress of its subtodos <br />
 A user will get an error message when formatting date and progress percentage incorrectly  <br />
 
