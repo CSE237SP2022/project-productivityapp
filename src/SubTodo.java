@@ -6,13 +6,15 @@ public class SubTodo {
 	public SubTodo(int id) {
 		this.id = id;
 	}
-	
 	public SubTodo(int id,int mainTodoId) {
 		this.id = id;
 		this.mainTodoId = mainTodoId;
 	}
 	public int getId() {
 		return id;
+	}
+	public int getParentTodoId() {
+		return mainTodoId;
 	}
 	public void setDescription(String description) {
 		this.description = description;

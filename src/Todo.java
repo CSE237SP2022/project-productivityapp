@@ -2,10 +2,11 @@ import java.util.*;
 public class Todo {
 	private String description,dueDate, progress,creationDate;
 	private int id;
-	private ArrayList<SubTodo> subTodoList = new ArrayList<>();
+	private ArrayList<SubTodo> subTodoList;
 	
 	public Todo(int id) {
 		this.id= id;
+		subTodoList = new ArrayList<>();
 	}
 	
 	public int getId() {
@@ -52,7 +53,7 @@ public class Todo {
 		return subTodoList;
 	}
 	
-	public void deleteAllSubtodos() {
+	public void deleteAllSubTodos() {
 		subTodoList.clear();
 	}
 }

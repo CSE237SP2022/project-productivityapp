@@ -27,9 +27,16 @@ public class TodosList {
 	    if(!todo.equals("exit")) {
 	    	System.out.println("Enter deadline for todo (MM/DD/YYYY)");
 	    	String dueDate = scannerObj.nextLine();
+	    	if(checkDateFormat(dueDate)==false) {
+	    		dueDate = continuePromptingForDate(dueDate);
+	    	}
 		    Instant instant = Instant.now();
 		    System.out.println("Enter current progress on todo 0-100 (don't include % sign)");
-		    String progress = scannerObj.nextLine()+"%";
+		    String progress = scannerObj.nextLine();
+		    if(!isValidPercent(progress)) {
+		    	progress = continuePromptingForPercentage(progress);
+		    }
+		    progress+="%";
 		    System.out.println("Would you like to add sub-todos? (yes/no)");
 		    String addSubTodos = scannerObj.nextLine();
 		    Todo newTodo = new Todo(todoCounter);
@@ -38,33 +45,47 @@ public class TodosList {
 		    newTodo.setProgress(progress);
 		    newTodo.setCreationDate(instant+"");
 		    if(addSubTodos.equals("yes")) {
-		    	String continueAddingSubTodos = "yes"; 
-		    	//separate into methods
-		    	while(continueAddingSubTodos.equals("yes")) {
-		    		System.out.println("Enter info for a new sub-todo: ");
-		    	    String subTodoInfo = scannerObj.nextLine();  
-			    	System.out.println("Enter deadline for subtodo (MM/DD/YYYY)");
-			    	String subDueDate = scannerObj.nextLine();
-				    Instant subInstant = Instant.now();
-				    System.out.println("Enter current progress on todo 0-100 (don't include % sign)");
-				    String subProgress = scannerObj.nextLine()+"%";
-				    SubTodo newSubTodo = new SubTodo(subTodoCounter, todoCounter);
-				    newSubTodo.setDescription(subTodoInfo);
-				    newSubTodo.setDueDate(subDueDate);
-				    newSubTodo.setProgress(subProgress);
-				    newSubTodo.setCreationDate(subInstant+"");
-				    newTodo.addSubTodo(newSubTodo);
-				    subTodoCounter++;
-				    System.out.println("Would you like to keep adding sub-todos? (yes/no)");
-				    continueAddingSubTodos = scannerObj.nextLine();
-		    	}
+		    	continueAddingSubTodosPrompt(newTodo);
 		    }
 		    return newTodo;
 	    }
 	    return null;
 	}
 	
-	public void createTodos(Todo newTodo) {
+	public String continuePromptingForDate(String date) {
+		while(checkDateFormat(date)==false) {
+			System.out.println("Error: The date '"+date+"' is not formatted correctly. Use DD/MM/YYYY format.");
+			System.out.println("Enter date again: ");
+			date = scannerObj.nextLine();
+		}
+		return date;
+	}
+	
+	public String continuePromptingForPercentage(String progress){
+		while(!isValidPercent(progress)) {
+			System.out.println("Error: '"+progress+"' is not a valid percent");
+			System.out.println("Enter progress again: ");
+			progress = scannerObj.nextLine();
+		}
+		return progress;
+	}
+	
+	public boolean isValidPercent(String percent) {
+		if(isNum(percent)) {
+			double percentDouble = Double.parseDouble(percent);
+			if(percentDouble<0 || percentDouble>100) {
+				return false;
+			}
+			else {
+				return true;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public void addTodoToList(Todo newTodo) {
 	    todosMap.put(todoCounter, newTodo);
 	    todoCounter++;
 	    System.out.println("New todo has been added to list!");
@@ -72,8 +93,8 @@ public class TodosList {
 	
 	public Todo selectTodo(int id) {
 		return todosMap.get(id);
-		
 	}
+	
 	public void alphabeticalSortTodos() {
 		HashMap<String, Integer> tempMap = new HashMap<>();
 		for(int key: todosMap.keySet()) {
@@ -110,20 +131,23 @@ public class TodosList {
 		for(int i = 0; i < sorted.size(); i++) {
 			String itemName = sorted.get(i) + "";
 			int itemId = temporary.get(itemName);
-			String itemDate = todosMap.get(itemId).getDueDate();
-			String itemProgress = todosMap.get(itemId).getProgress();
-			
-			System.out.print(itemId);
-			System.out.print("        ");
-			System.out.print(itemName);
-			System.out.print("        ");
-			System.out.print(itemDate);
-			System.out.print("        ");
-			System.out.print(itemProgress);
-			System.out.print("        ");
-			System.out.println("");
+			printingOutFilteredTodos(itemName, itemId);
 			
 		}
+	}
+	
+	public void printingOutFilteredTodos(String todoName, int todoId) {
+		String itemDate = todosMap.get(todoId).getDueDate();
+		String itemProgress = todosMap.get(todoId).getProgress();
+		System.out.print(todoId);
+		System.out.print("        ");
+		System.out.print(todoName);
+		System.out.print("        ");
+		System.out.print(itemDate);
+		System.out.print("        ");
+		System.out.print(itemProgress);
+		System.out.print("        ");
+		System.out.println("");
 	}
 	
 	public void dateSortTodos() {
@@ -151,6 +175,19 @@ public class TodosList {
 		}
 	}
 	
+	public boolean checkDateFormat(String date) {
+		if(date.length()!=10) {
+			return false;
+		}
+		if(!isNum(date.substring(0,2)) || !isNum(date.substring(3,5)) || !isNum(date.substring(6,10))) {
+			return false;
+		}
+		if(!date.substring(2,3).equals("/") || !date.substring(5,6).equals("/")){
+			return false;
+		}
+		return true;
+	}
+	
 	public static boolean isNum(String str) {  
 		  try {  
 		    int i = Integer.parseInt(str);  
@@ -159,6 +196,39 @@ public class TodosList {
 		    return false;  
 		  }
 		  return true;  
+	}
+	
+	public void printAllSelectedSubtodos(int todoId) {
+		for(SubTodo key: todosMap.get(todoId).getSubTodoList()) {
+			System.out.print("        ");
+			System.out.print(key.getId());
+			System.out.print("        ");
+			System.out.print(key.getDescription());
+			System.out.print("        ");
+			System.out.print(key.getDueDate());
+			System.out.print("        ");
+			System.out.print(key.getProgress());
+			System.out.print("        ");
+			System.out.println("");
+		}
+	}
+	
+	public void printSelectedTodo(int todoId) {
+		Todo selectedTodo =selectTodo(todoId);
+		String todoDescription = selectedTodo.getDescription();
+		String todoDueDate = selectedTodo.getDueDate();
+		String todoProgress = selectedTodo.getProgress();
+		System.out.print(todoId);
+		System.out.print("        ");
+		System.out.print(todoDescription);
+		System.out.print("        ");
+		System.out.print(todoDueDate);
+		System.out.print("        ");
+		System.out.print(todoProgress);
+		System.out.print("        ");
+		System.out.println("");
+		System.out.println("Subtodos: ");
+		printAllSelectedSubtodos(todoId);
 	}
 	
 	public void selectTodoPrompt() {
@@ -180,32 +250,7 @@ public class TodosList {
 	    		System.out.println("Input not valid. Todo does not exist. ");
 	    	}
 	    	else {
-	    		Todo selectedTodo =selectTodo(todoId);
-	    		String todoDescription = selectedTodo.getDescription();
-    			String todoDueDate = selectedTodo.getDueDate();
-    			String todoProgress = selectedTodo.getProgress();
-    			System.out.print(todoId);
-    			System.out.print("        ");
-    			System.out.print(todoDescription);
-    			System.out.print("        ");
-    			System.out.print(todoDueDate);
-    			System.out.print("        ");
-    			System.out.print(todoProgress);
-    			System.out.print("        ");
-    			System.out.println("");
-    			System.out.println("Subtodos: ");
-    			for(SubTodo key: todosMap.get(todoId).getSubTodoList()) {
-    				System.out.print("        ");
-        			System.out.print(key.getId());
-        			System.out.print("        ");
-        			System.out.print(key.getDescription());
-        			System.out.print("        ");
-        			System.out.print(key.getDueDate());
-        			System.out.print("        ");
-        			System.out.print(key.getProgress());
-        			System.out.print("        ");
-        			System.out.println("");
-    			}
+	    		printSelectedTodo(todoId);
 	    	}
 	    }
 	}
@@ -216,21 +261,25 @@ public class TodosList {
 		    	todosMap.remove(Integer.parseInt(todo));
 		    }
 		    else {
-		    	int todoId = -1;
-		    	for(int key:todosMap.keySet()) {
-		    		if(todosMap.get(key).getDescription().equals(todo)) {
-		    			todoId = key;
-		    		}
-		    	}
-		    	if(todoId != -1) {
-		    		todosMap.remove(todoId);
-		    	}
-		    	else {
-		    		System.out.println("Input not valid. Todo does not exist. ");
-		    	}
+		    	deleteTodoByDescription(todo);
 		    }
 	    }
 		
+	}
+	
+	public void deleteTodoByDescription(String todo) {
+    	int todoId = -1;
+    	for(int key:todosMap.keySet()) {
+    		if(todosMap.get(key).getDescription().equals(todo)) {
+    			todoId = key;
+    		}
+    	}
+    	if(todoId != -1) {
+    		todosMap.remove(todoId);
+    	}
+    	else {
+    		System.out.println("Input not valid. Todo does not exist. ");
+    	}
 	}
 	
 	public void deleteTodosPrompt() {
@@ -240,10 +289,10 @@ public class TodosList {
 		
 	}
 	
-	public void addSubTodo(int todoId,SubTodo newSubTodo) {
-	    System.out.println("Sub-todo has been added");
-	    todosMap.get(todoId).addSubTodo(newSubTodo);
+	public void addSubTodo(Todo todo,SubTodo newSubTodo) {
+	    todo.addSubTodo(newSubTodo);
 	    subTodoCounter++;
+	    System.out.println("Sub-todo has been added");
 	}
 	
 	public SubTodo addSubTodoPrompt() {
@@ -265,29 +314,52 @@ public class TodosList {
 	    		System.out.println("Input not valid. Todo does not exist. ");
 	    	}
 	    	else {
-		    	String continueAddingSubTodos = "yes"; 
-		    	while(continueAddingSubTodos.equals("yes")) {
-		    		System.out.println("Enter info for a new sub-todo: ");
-		    	    String subTodoInfo = scannerObj.nextLine();  
-			    	System.out.println("Enter deadline for subtodo (MM/DD/YYYY)");
-			    	String subDueDate = scannerObj.nextLine();
-				    Instant subInstant = Instant.now();
-				    System.out.println("Enter current progress on todo 0-100 (don't include % sign)");
-				    String subProgress = scannerObj.nextLine()+"%";
-				    SubTodo newSubTodo = new SubTodo(subTodoCounter, todoCounter);
-				    newSubTodo.setDescription(subTodoInfo);
-				    newSubTodo.setDueDate(subDueDate);
-				    newSubTodo.setProgress(subProgress);
-				    newSubTodo.setCreationDate(subInstant+"");
-				    addSubTodo(todoId,newSubTodo);
-				    System.out.println("Would you like to keep adding sub-todos? (yes/no)");
-				    continueAddingSubTodos = scannerObj.nextLine();
-				    
-		    	}
+	    		Todo selectedTodo = todosMap.get(todoId);
+	    		continueAddingSubTodosPrompt(selectedTodo);
 	    	}
 	    }
 		SubTodo newSubTodo = new SubTodo(0);
 		return newSubTodo;
+	}
+	
+	public void continueAddingSubTodosPrompt(Todo todo) {
+    	String continueAddingSubTodos = "yes"; 
+    	while(continueAddingSubTodos.equals("yes")) {
+    		System.out.println("Enter info for a new sub-todo: ");
+    	    String subTodoInfo = scannerObj.nextLine();  
+	    	System.out.println("Enter deadline for subtodo (MM/DD/YYYY)");
+	    	String subDueDate = scannerObj.nextLine();
+	    	if(checkDateFormat(subDueDate)==false) {
+	    		subDueDate = continuePromptingForDate(subDueDate);
+	    	}
+		    Instant subInstant = Instant.now();
+		    System.out.println("Enter current progress on todo 0-100 (don't include % sign)");
+		    String subProgress = scannerObj.nextLine();
+		    if(!isValidPercent(subProgress)) {
+		    	subProgress = continuePromptingForPercentage(subProgress);
+		    }
+		    subProgress+="%";
+		    SubTodo newSubTodo = new SubTodo(subTodoCounter, todoCounter);
+		    newSubTodo.setDescription(subTodoInfo);
+		    newSubTodo.setDueDate(subDueDate);
+		    newSubTodo.setProgress(subProgress);
+		    newSubTodo.setCreationDate(subInstant+"");
+		    addSubTodo(todo,newSubTodo);
+		    System.out.println("Would you like to keep adding sub-todos? (yes/no)");
+		    continueAddingSubTodos = scannerObj.nextLine();
+    	}
+    	if(!todo.getSubTodoList().isEmpty()) {
+    		todo.setProgress(calculateTotalProgressOfSubTodos(todo)+"%"); 
+    	}
+	}
+	public double calculateTotalProgressOfSubTodos(Todo todo) {
+		int numSubTodos = todo.getSubTodoList().size();
+		double totalPercent = 0;
+		for(SubTodo subTodo: todo.getSubTodoList()) {
+			double progress = Double.parseDouble(subTodo.getProgress().substring(0,subTodo.getProgress().length()-1));
+			totalPercent += progress/numSubTodos;
+		}
+		return totalPercent;
 	}
 	
 	public void printTodos() {

@@ -1,8 +1,4 @@
-
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.*;
-import java.time.Instant;
 
 public class ProductivityApp {
 
@@ -25,7 +21,7 @@ public class ProductivityApp {
 			String todoCommand = scannerObj.nextLine();
 			if(todoCommand.equals("create")) {
 				Todo newTodo = todosList.createTodoPrompt();
-				todosList.createTodos(newTodo);
+				todosList.addTodoToList(newTodo);
 			}
 			else if(todoCommand.equals("delete")) {
 				todosList.deleteTodosPrompt();
@@ -60,7 +56,7 @@ public class ProductivityApp {
 			System.out.println("");
 			System.out.println("");
 		}
+		scannerObj.close();
 	}
-	
 	
 }
